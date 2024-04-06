@@ -1,0 +1,112 @@
+% import gaya yang sudah disiapkan
+\documentclass{gaya}
+
+% import berbagai variabel
+\input{pustaka/variables.tex}
+\input{pustaka/jenis-dokumen.tex}
+
+% pemenggalan kata
+\input{pustaka/tanda-hubung.tex}
+
+% Isi keseluruhan dokumen
+\begin{document}
+
+% Sampul luar bahasa indonesia
+\cover
+\newpage
+
+% Nomor halaman pembuka dimulai dari sini
+\pagenumbering{roman}
+
+% Sampul dalam bahasa indonesia
+\coverdalam
+\newpage
+
+% Halaman pengesahan
+\approvalpage
+\cleardoublepage
+
+% Halaman orisinalitas
+\originalitypage
+\cleardoublepage
+
+% Halaman publikasi
+\publicationpage
+\cleardoublepage
+
+% Abstrak Bahasa Indonesia
+\input{abstrak/abstrak-id.tex}
+\cleardoublepage
+
+% Abstrak Bahasa Inggris
+\input{abstrak/abstrak-en.tex}
+\cleardoublepage
+
+% Motto
+\input{lainnya/motto.tex}
+\cleardoublepage
+
+% Persembahan
+\input{lainnya/halaman-persembahan.tex}
+\cleardoublepage
+
+% Kata pengantar
+\input{lainnya/kata-pengantar.tex}
+\cleardoublepage
+
+% Daftar Isi
+\newpage
+\addcontentsline{toc}{chapter}{DAFTAR ISI}
+\tableofcontents
+
+% Daftar Gambar
+\newpage
+\addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
+\listoffigures
+
+% Daftar Tabel
+\newpage
+\addcontentsline{toc}{chapter}{DAFTAR TABEL}
+\listoftables
+
+% Daftar Singkatan
+\include{bab/daftar-singkatan.tex}
+
+% Daftar Simbol
+\include{bab/daftar-simbol.tex}
+
+\newpage
+
+% Nomor halaman isi dimulai dari sini
+\pagenumbering{arabic}
+
+% Bab 1 pendahuluan
+\include{bab/1-pendahuluan.tex}
+
+% Bab 2 tinjauan pustaka
+\include{bab/2-tinjauan-pustaka.tex}
+
+% Bab 3 metodologi penelitian
+\include{bab/3-metodologi-penelitian.tex}
+
+% Bab 4 hasil dan pembahasan
+\include{bab/4-hasil-pembahasan.tex}
+
+% Bab 5 penutup
+\include{bab/5-penutup.tex}
+
+% Daftar Pustaka
+\addcontentsline{toc}{chapter}{DAFTAR PUSTAKA}
+\sloppy
+\printbibliography
+
+% Halaman lampiran di tengah
+\newpage
+\input{lainnya/lampiran-di-tengah.tex}
+
+% Lampiran
+\begin{appendix}
+\include{bab/6-lampiran.tex}
+\end{appendix}
+
+\end{document}

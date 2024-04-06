@@ -1,0 +1,37 @@
+%-----------------------------------------------
+% Input tahapan Tugas akhir Anda saat ini
+%-----------------------------------------------
+% diisi dengan:
+% sempro (jika dibuat untuk seminar proposal),
+% semhas (jika untuk seminar hasil),
+% sidang (untuk sidang), atau
+% final (jika sudah final dan siap cetak)
+
+\def\sempro{sempro}
+\def\semhas{semhas}
+\def\sidang{sidang}
+\def\final{final}
+
+\ifx\tahapan\sempro
+\textta{Proposal Skripsi}
+\textoncover{Diajukan sebagai syarat maju seminar proposal}
+\textonapproval{Naskah Proposal Tugas Akhir } \else
+\ifx\tahapan\semhas
+\textta{Naskah Skripsi}
+\textoncover{Diajukan sebagai syarat maju seminar hasil}
+\textonapproval{Naskah Tugas Akhir untuk Seminar Hasil } \else
+\ifx\tahapan\sidang
+\textta{Naskah Skripsi}
+\textoncover{Diajukan sebagai syarat maju sidang tugas akhir}
+\textonapproval{Naskah Skripsi untuk Sidang Akhir } \else
+\ifx\tahapan\final
+\textta{Skripsi}
+\textoncover{Diajukan sebagai syarat untuk memperoleh gelar Sarjana}
+\textonapproval{Tugas Akhir Sarjana } \else
+\textta{SALAH INPUT!!!}
+\textoncover{SALAH INPUT!!!}
+\textonaproval{SALAH INPUT!!!}
+\fi
+\fi
+\fi
+\fi
