@@ -119,7 +119,7 @@ msthesisfalse\@msproposaltrue}
 \setlist{nosep}
 
 %Tautan dan Daftar Isi
-\usepackage{hyperref}
+\usepackage[hypertexnames=false]{hyperref} % make hyperref dumb, https://tex.stackexchange.com/questions/6098/wrong-hyper-references-after-resetting-chapter-counter
 \newlength{\mylenf}
 \settowidth{\mylenf}{\cftfigpresnum}
 \setlength{\cftfignumwidth}{\dimexpr\mylenf+2em}
@@ -153,6 +153,8 @@ msthesisfalse\@msproposaltrue}
   tabsize=2,
 }
 \lstset{style=mystyle}
+
+\renewcommand{\lstlistingname}{Algoritma}% Listing -> Algorithm
 
 % Abstract-en
 \usepackage{icomma}
@@ -497,7 +499,7 @@ maupun yang dirujuk telah saya nyatakan benar.}\\
 \begin{tabular}{l c l}
 \textbf{Nama} & : & \textbf{\@fullname} \\
 \textbf{NIM} & : & \textbf{\@idnum} \\
-\textbf{Tanda tangan} & : &  \\
+\textbf{Tanda tangan} & : &  \\[1cm]
 \textbf{Tanggal} & : & \textbf{\@approvaldate}
 \end{tabular}\\
 
