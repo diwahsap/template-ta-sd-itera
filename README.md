@@ -26,6 +26,12 @@ Selain file `main.tex`, ada juga beberapa bagian lain dari template ini yang bis
 - **[`pustaka/variables.tex`](./pustaka/variables.tex)**, berisi variabel-variabel yang memuat nama, nrp, dan hal-hal lain yang dapat disesuaikan dengan kebutuhan penulis.
 
 > Penjelasan lebih lanjut mengenai penggunaan template ini akan dijelaskan dengan comment yang tersedia pada setiap file yang ada.
+> Dapat dilihat pada [video Youtube](https://www.youtube.com/live/Bx4Jcr87kbo) juga.
+
+## Contoh Skripsi
+
+Berikut adalah skripsi yang dibuat menggunakan template ini, yaitu
+- [Dimas Wahyu Saputro, 120450081](https://zenodo.org/records/11648507)
 
 ## Ucapan Terima Kasih dan Referensi
 
@@ -34,6 +40,7 @@ Terima kasih banyak kepada beberapa sumber yang menginspirasi penulis untuk memb
 - [B201 Telematics Laboratory, ITS](https://github.com/b201lab/template-buku-ta-its)
 - [Template LaTeX IF Itera](https://github.com/josestg/Latex-TA-IF-ITERA)
 - [Template LaTeX SAP Itera](https://www.overleaf.com/project/6163a7c46c2d4fec909aa54f)
+- [Panduan Tugas Akhir SD Itera](https://sd.itera.ac.id/tugas-akhir/)
 
 ## Lisensi
 
