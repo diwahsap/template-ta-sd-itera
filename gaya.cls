@@ -432,7 +432,7 @@ msthesisfalse\@msproposaltrue}
 		\end{minipage}
 		\hfill
 		\begin{minipage}{0.2\textwidth}
-		    \includegraphics[width=\textwidth]{figures/sample-photo.jpg}
+		    \includegraphics[width=\textwidth]{gambar/sample-photo.jpg}
 		\end{minipage}
 	\begin{onehalfspace}
 		\\[0.5cm]
