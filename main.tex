@@ -55,30 +55,24 @@
 \cleardoublepage
 
 % Daftar Isi
-\newpage
-\phantomsection%<---
 \addcontentsline{toc}{chapter}{DAFTAR ISI}
 \tableofcontents
 
 % Daftar Gambar
-\newpage
 \phantomsection%<---
 \addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
 \listoffigures
 
 % Daftar Tabel
-\newpage
 \phantomsection%<---
 \addcontentsline{toc}{chapter}{DAFTAR TABEL}
 \listoftables
 
-% Daftar Singkatan
-\phantomsection%<---
-\include{lainnya/daftar-singkatan.tex}
-
-% Daftar Simbol
-\phantomsection%<---
-\include{lainnya/daftar-simbol.tex}
+%% Daftar Singkatan
+%\include{lainnya/daftar-singkatan.tex}
+%
+%% Daftar Simbol
+%\include{lainnya/daftar-simbol.tex}
 
 \newpage
 
@@ -109,10 +103,10 @@
 % Halaman lampiran di tengah
 \newpage
 \phantomsection%<---
+\addcontentsline{toc}{chapter}{LAMPIRAN}
 \input{lainnya/lampiran-di-tengah.tex}
 
 % Lampiran
-\phantomsection%<---
 \begin{appendix}
 \include{bab/6-lampiran.tex}
 \end{appendix}

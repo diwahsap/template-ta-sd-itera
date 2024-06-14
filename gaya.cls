@@ -45,8 +45,18 @@
 \usepackage{indentfirst}
 \usepackage{amsmath}
 \usepackage{array}
-\usepackage{tabularx,booktabs}
+\usepackage{booktabs,tabularx}
+\renewcommand{\tabularxcolumn}{m}
 \usepackage{blindtext}
+
+% for hypenation - pemenggalan kata
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+% for spacing
+\usepackage{parskip}
 
 \newif\if@msthesis
 \newif\if@msproposal
@@ -133,6 +143,7 @@ msthesisfalse\@msproposaltrue}
 \captionsetup{labelsep=space, skip=1pt}
 \usepackage{subcaption}
 
+\usepackage{txfonts} % Font times
 \usepackage{listings}
 \definecolor{comment}{RGB}{0,128,0}
 \definecolor{string}{RGB}{255,0,0}
@@ -141,7 +152,6 @@ msthesisfalse\@msproposaltrue}
   commentstyle=\color{comment},
   stringstyle=\color{string},
   keywordstyle=\color{keyword},
-  basicstyle=\footnotesize\ttfamily,
   numbers=left,
   numberstyle=\tiny,
   numbersep=5pt,
@@ -151,10 +161,17 @@ msthesisfalse\@msproposaltrue}
   showstringspaces=false,
   upquote=true,
   tabsize=2,
+  basicstyle=\linespread{0.7}\footnotesize\ttfamily,
 }
 \lstset{style=mystyle}
 
-\renewcommand{\lstlistingname}{Algoritma}% Listing -> Algorithm
+\usepackage[ruled,vlined]{algorithm2e}
+
+\AtBeginDocument{%
+  \renewcommand\lstlistingname{Algoritma}
+  \renewcommand\thelstlisting{\arabic{chapter}.\arabic{lstlisting}}}
+
+% \renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
 
 % Abstract-en
 \usepackage{icomma}
@@ -331,6 +348,10 @@ msthesisfalse\@msproposaltrue}
 \newcommand{\@nipnrksecond}{}
 \newcommand{\nipnrkhead}[1]{\gdef\@nipnrkhead{#1}}
 \newcommand{\@nipnrkhead}{}
+\newcommand{\firstexaminer}[1]{\gdef\@firstexaminer{#1}}
+\newcommand{\@firstexaminer}{}
+\newcommand{\secondexaminer}[1]{\gdef\@secondexaminer{#1}}
+\newcommand{\@secondexaminer}{}
 
 %------------------------------------------------------------
 % Untuk \if tahap penulisan
@@ -356,7 +377,7 @@ msthesisfalse\@msproposaltrue}
                 \MakeUppercase{\@textta}\\[16pt]
                 \vfill
                 \fontsize{13pt}{16pt}\selectfont{\@fullname}\\
-                {NIM \@idnum}\vfill
+                {\@idnum}\vfill
                 \fontsize{14pt}{16pt}\selectfont\MakeUppercase{
                 {Program Studi \@program}\\
                 {Fakultas \@dept}\\
@@ -382,7 +403,7 @@ msthesisfalse\@msproposaltrue}
                 \MakeUppercase{\@textta}\\
                 \@textoncover\vfill
                 \fontsize{13pt}{16pt}\selectfont{\@fullname}\\
-                {NIM \@idnum}\vfill
+                {\@idnum}\vfill
                 \fontsize{14pt}{16pt}\selectfont\MakeUppercase{
                 {Program Studi \@program}\\
                 {Fakultas \@dept}\\
@@ -400,41 +421,56 @@ msthesisfalse\@msproposaltrue}
     \thispagestyle{plain}
     \chapter*{\approvalname}
     \begin{onehalfspace} \justifying
-        \noindent \@textonapproval dengan judul "\textbf{\@titleindinline}" adalah benar dibuat oleh saya sendiri dan belum pernah dibuat dan diserahkan sebelumnya, baik sebagian ataupun seluruhnya, baik oleh saya ataupun orang lain, baik di \@university maupun di institusi pendidikan lainnya. \\
+        \noindent \@textonapproval dengan judul "\textbf{\@titleindinline}" adalah benar dibuat oleh saya sendiri dan belum pernah dibuat dan diserahkan sebelumnya, baik sebagian ataupun seluruhnya, baik oleh saya ataupun orang lain, baik di \@university maupun di institusi pendidikan lainnya. 
     \end{onehalfspace}
     \begin{singlespace} \RaggedRight
-        \@city, \@approvaldate\\
+        \@city, \@approvaldate\\[0.25cm]
 		\begin{minipage}{0.7\textwidth} % Adjust width as needed
-		    Penulis, \\[2.5cm]
+		    Penulis, \\[2cm]
 		    \bfseries \underline{\@fullname \textcolor{white}{,}} \\
-		    \bfseries NIM \@idnum \\[1cm]
+		    \bfseries NIM. \@idnum \\[1cm]
 		\end{minipage}
 		\hfill
 		\begin{minipage}{0.2\textwidth}
-		    \includegraphics[width=\textwidth]{gambar/sample-photo.jpg}
+		    \includegraphics[width=\textwidth]{figures/sample-photo.jpg}
 		\end{minipage}
 	\begin{onehalfspace}
 		\\[0.5cm]
 	\end{onehalfspace}
     \end{singlespace}
 	
-    \Centering Diperiksa dan disetujui oleh,\\[0.5cm]
+    \Centering Diperiksa dan disetujui oleh,\\[0.25cm]
     \begin{singlespace}
     \begin{tabular}{c c c}
-        Pembimbing I & & Pembimbing II \\[2.5cm]
+        Pembimbing I & & Pembimbing II \\[2cm]
         \bfseries \underline{\@firstsupervisor} & \hspace{1cm} & \bfseries \underline{\@secondsupervisor} \\
         \bfseries \@nipnrkfirst \@firstnip & & \bfseries \@nipnrksecond \@secondnip \\
-    \end{tabular} \\[1cm]
+    \end{tabular} \\[0.5cm]
     \end{singlespace}
     \ifx \sempro\tahapan \else \fi
     \begin{singlespace} \Centering
-        Disahkan oleh,\\
+        Disahkan oleh,\\[0.25cm]
         Koordinator Program Studi \@program \\
         Fakultas \@dept \\
-        \@university\\[2.5cm]
+        \@university\\[2cm]
         \bfseries \underline{\@headofdepartment} \\
         \bfseries \@nipnrkhead \@headnip
     \end{singlespace}
+    
+    \vspace{0.5cm}
+    \begin{singlespace}
+        \begin{flushright}
+            Sidang Tugas Akhir :     
+        \end{flushright}
+    \vspace{-0.5cm}
+    \raggedright
+    \begin{tabular}{l l}
+        Penguji I &: \@firstexaminer \\
+        Penguji II &: \@secondexaminer
+    \end{tabular}
+    \end{singlespace}
+
+    
 \addcontentsline{toc}{chapter}{\approvalname}
 }
 
@@ -516,7 +552,7 @@ maupun yang dirujuk telah saya nyatakan benar.}\\
 \addcontentsline{toc}{chapter}{\publicationnametoc}
 \begin{onehalfspacing}
 \begin{justify}
-Sebagai civitas akademik Institut Teknologi Sumatera, saya yang bertanda tangan di bawah ini:\\
+Sebagai civitas akademik Institut Teknologi Sumatera, saya yang bertanda tangan di bawah ini:
 
 \begin{tabular}{l c l}
 Nama & : & \@fullname \\
@@ -524,7 +560,7 @@ NIM & : & \@idnum \\
 Program Studi & : & \@program \\
 Fakultas & : & \@dept \\
 Jenis karya & : & Skripsi\\
-\end{tabular}\\
+\end{tabular}
 
 \noindent demi pengembangan ilmu pengetahuan, menyetujui untuk memberikan Hak Bebas Royalti Noneksklusif (\emph{Non-Exclusive Royalty Free Right}) kepada Institut Teknologi Sumatera atas karya ilmiah saya yang berjudul:
 \end{justify}
@@ -534,17 +570,15 @@ beserta perangkat yang ada (jika diperlukan). Dengan Hak Bebas Royalti Noneksklu
 \noindent Demikian pernyataan ini saya buat dengan sebenarnya.
 \end{justify}
 
-\begin{flushright}
 \begin{tabular}{l c l}
 Dibuat di & : & \@city\\
 Pada tanggal & : & \@approvaldate\\
 & &\\
 \end{tabular}
 \\
+Yang menyatakan\\
 \vspace{2cm}
-Yang menyatakan (\@fullname)
-\vspace{5cm}
-\end{flushright}
+\@fullname
 \end{onehalfspacing}
 
 }
