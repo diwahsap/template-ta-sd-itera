@@ -181,7 +181,14 @@ msthesisfalse\@msproposaltrue}
 %------------------------------------------------------------
 %Redefine chapter and sections
 %------------------------------------------------------------
-\setcounter{secnumdepth}{2}
+\usepackage{titlesec}
+\titleformat{\paragraph} % for subsubsection
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\setcounter{secnumdepth}{4} % how many sectioning levels to assign numbers to
+\setcounter{tocdepth}{4}    % how many sectioning levels to show in ToC
+
 \renewcommand \thepart {\@Roman\c@part}
 \renewcommand \thechapter {\@Roman\c@chapter}
 %\renewcommand \thesection {\@arabic\c@section.}
@@ -234,11 +241,6 @@ msthesisfalse\@msproposaltrue}
                                      {-3.25ex\@plus -1ex \@minus -.2ex}%
                                      {1.ex \@plus .2ex}%
                                      {\normalfont\normalsize\bfseries}}
-\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
-                                    {3.25ex \@plus1ex \@minus.2ex}%
-                                    {-1em}%
-                                    {\normalfont\normalsize\bfseries}}
-\renewcommand{\paragraph}{\subparagraph}
 
 \@addtoreset {equation}{chapter}
 \renewcommand\theequation
