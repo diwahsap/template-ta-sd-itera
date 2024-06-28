@@ -188,6 +188,7 @@ msthesisfalse\@msproposaltrue}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 \setcounter{secnumdepth}{4} % how many sectioning levels to assign numbers to
 \setcounter{tocdepth}{4}    % how many sectioning levels to show in ToC
+\cftsetindents{subsubsection}{4.5em}{3.2em} % 
 
 \renewcommand \thepart {\@Roman\c@part}
 \renewcommand \thechapter {\@Roman\c@chapter}
