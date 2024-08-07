@@ -138,6 +138,9 @@ msthesisfalse\@msproposaltrue}
 %Bila keterangan gambar ingin tebal
 \usepackage[font=footnotesize,labelfont=bf]{caption}
 
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
 %Penulisan caption dan subcaption
 \usepackage{caption}
 \captionsetup{labelsep=space, skip=1pt}
@@ -205,15 +208,11 @@ msthesisfalse\@msproposaltrue}
   \gdef\thechapter{\@Alph\c@chapter}
   \renewcommand{\thesection}{{\thechapter}.\arabic{section}}
   \renewcommand{\thesubsection}{{\thesection}.\arabic{subsection}}
-  \renewcommand \thetable
-     {\ifnum \c@chapter>\z@ \@Alph\c@chapter.\fi \@arabic\c@table}
+  \renewcommand{\thetable}{\@arabic\c@figure}
   \renewcommand\theequation
      {\ifnum \c@chapter>\z@ \@Alph\c@chapter.\fi \@arabic\c@equation}
-  \renewcommand \thefigure
-     {\ifnum \c@chapter>\z@ \@Alph\c@chapter.\fi \@arabic\c@figure}
-
-
-     }
+  \renewcommand{\thefigure}{\@arabic\c@figure}
+}
 
 \renewcommand{\chapter}{\clearpage\thispagestyle{plain}% ok wtf, it was (chapterheading) b4
   \global\@topnum\z@ %Prevents figures from going at top of page
@@ -246,10 +245,8 @@ msthesisfalse\@msproposaltrue}
 \@addtoreset {equation}{chapter}
 \renewcommand\theequation
   {\ifnum \c@chapter>\z@ \@arabic\c@chapter.\fi \@arabic\c@equation}
-\renewcommand \thefigure
-     {\ifnum \c@chapter>\z@ \@arabic\c@chapter.\fi \@arabic\c@figure}
-\renewcommand \thetable
-     {\ifnum \c@chapter>\z@ \@arabic\c@chapter.\fi \@arabic\c@table}
+\renewcommand{\thefigure}{\@arabic\c@figure}
+\renewcommand{\thetable}{\@arabic\c@figure}
 
 %------------------------------------------------------------
 %Redefine caption names
