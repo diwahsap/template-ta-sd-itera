@@ -344,28 +344,28 @@
 %------------------------------------------------------------
 %Define sampul in Indonesian
 %------------------------------------------------------------
+\makeatletter
 \def\cover{
     \thispagestyle{empty}
     \setcounter{page}{1}
     \begin{center}
         \begin{singlespace}
             {\normalfont\bfseries
-                \fontsize{11}{16.8}\selectfont\MakeUppercase{\nobreak \@titleind}\\[1.5cm]
+                \fontsize{11}{16.8}\selectfont\MakeUppercase{\@titleind}\\[1.5cm]
                 \MakeUppercase{\@textta}\\[16pt]
                 \vfill
-            {\fontfamily{ptm}\selectfont\fontsize{11}{13.2}\selectfont \@fullname\\ \@idnum}\\[0.5cm]
-            
-            \includegraphics[width=3cm]{gambar/itera-logo.png} \\[1.5cm]
-                \fontsize{11}{15.6}\\
-                \vfill
-                \fontsize{11}{16.8}\selectfont\MakeUppercase{
-                {Program Studi \@program}\\
-                {Fakultas \@dept}\\
-                {\@university}\\
-                {\@yearsubmit}}}
+                {\fontfamily{ptm}\selectfont\fontsize{11}{13.2}\selectfont \@fullname\\ \@idnum}\\[0.5cm]
+                \includegraphics[width=3cm]{gambar/itera-logo.png} \\[1.5cm] \vfill
+                \fontsize{11}{16.8}\selectfont
+                \MakeUppercase{Program Studi \@program}\\
+                \MakeUppercase{Fakultas \@dept}\\
+                \MakeUppercase{\@university}\\
+                \MakeUppercase{\@yearsubmit}
+            }
         \end{singlespace}
     \end{center}
 }
+
 
 %------------------------------------------------------------
 %Define halaman judul in Indonesian
@@ -379,20 +379,24 @@
             {\normalfont\bfseries
                 \fontsize{11}{11}\selectfont\MakeUppercase{\nobreak \@titleind} \\[1.5cm]
                 \MakeUppercase{\@textta}\\[16pt]
-                \@textoncover\vfill
-            {\fontfamily{ptm}\selectfont\fontsize{11}{13.2}\selectfont \@fullname\\ \@idnum}\\[0.5cm]
-            
-            \includegraphics[width=3cm]{gambar/itera-logo.png} \\[1.5cm]
-                \fontsize{11}{15.6}\\
+                \@textoncover
                 \vfill
-                \fontsize{11}{11}\selectfont\MakeUppercase{
-                {Program Studi \@program}\\
-                {Fakultas \@dept}\\
-                {\@university}\\
-                {\@yearsubmit}}}
+
+                {\fontfamily{ptm}\fontsize{11}{13.2}\selectfont
+                \@fullname\\
+                \@idnum}\\[0.5cm]
+                \includegraphics[width=3cm]{gambar/itera-logo.png} \\[1.5cm] \vfill
+
+                \fontsize{11}{11}\selectfont
+                \MakeUppercase{Program Studi \@program}\\
+                \MakeUppercase{Fakultas \@dept}\\
+                \MakeUppercase{\@university}\\
+                \MakeUppercase{\@yearsubmit}
+            }
         \end{singlespace}
     \end{center}
 }
+
 
 %------------------------------------------------------------
 %Approval Page
@@ -534,6 +538,7 @@ Jenis karya & : & Skripsi\\
 beserta perangkat yang ada (jika diperlukan). Dengan Hak Bebas Royalti Noneksklusif ini Institut Teknologi Sumatera berhak menyimpan, mengalihmedia/format-kan, mengelola dalam bentuk pangkalan data (\emph{database}), merawat, dan memublikasikan tugas akhir saya selama tetap mencantumkan nama saya sebagai penulis/pencipta dan sebagai pemilik Hak Cipta.\\[.3cm]
 \noindent Demikian pernyataan ini saya buat dengan sebenarnya.
 \end{justify}
+\end{onehalfspacing}
 
 \begin{onehalfspacing}
 \begin{center} % Tambahkan environment center
@@ -572,46 +577,67 @@ Yang menyatakan\\
 %------------------------------------------------------------
 \selectlanguage{bahasa}
 \def\abstractind{%
-  \clearpage\thispagestyle{empty}%
+  \clearpage
+  \thispagestyle{empty}%
   \chapter*{\abstractname}%
-  {\parindent \z@ \normalfont
-  }
-\textbf{\@titleind}  \\
-\vspace{-1em}
-\begin{center} % Mulai environment center
-  \begin{singlespacing}%
-  \@fullname\ (\@idnum) \\
-  Pembimbing I: \@firstsupervisor \\
-  Pembimbing II:  \@secondsupervisor \\
-  \end{singlespacing}%
-\end{center} % Akhir environment center
-  \addcontentsline{toc}{chapter}{\abstractname}
+  \addcontentsline{toc}{chapter}{\abstractname}%
+
+  \begin{center}
+    \textbf{\@titleind}%
+  \end{center}
+  
+  \vspace{1em}
+
+  \begin{center}
+    \begin{singlespacing}
+      \@fullname\ (\@idnum)\\
+      Pembimbing I: \@firstsupervisor\\
+      Pembimbing II: \@secondsupervisor
+    \end{singlespacing}
+  \end{center}
+  \vspace{-1em}
+  \begin{singlespacing}
 }
-\def\endabstractind{\par\vfil\null\end{singlespacing}}
+
+\def\endabstractind{%
+  \par\vfil\null
+  \end{singlespacing}
+}
 
 %------------------------------------------------------------
-%Redefine Abstract in English
+% Redefine Abstract in English
 %------------------------------------------------------------
-\newcommand{\textbfit}[1]{\textbf{\textit{#1}}} % Definisi perintah bold-italic
+\newcommand{\textbfit}[1]{\textbf{\textit{#1}}} % Bold-italic command
 
 \def\abstracteng{%
-  \clearpage\thispagestyle{empty}\selectlanguage{english}%
+  \clearpage
+  \thispagestyle{empty}
+  \selectlanguage{english}
   \chapter*{\abstractname}%
-  {\parindent \z@ \normalfont}%
-  \textbfit{\@titleen} \\ % Judul abstrak Inggris (bold miring)
-  \vspace{-1em}
-  \begin{center} % Teks ditengah
-    \begin{singlespacing}%
+  \addcontentsline{toc}{chapter}{\abstractname}%
+
+  \begin{center}
+    \textbfit{\@titleen}
+  \end{center}
+
+  \vspace{1em}
+
+  \begin{center}
+    \begin{singlespacing}
       \@fullname\ (\@idnum) \\
       \textit{Advisor I}: \@firstsupervisor \\
-      \textit{Advisor II}: \@secondsupervisor \\
-    \end{singlespacing}%
-  \end{center}%
-  \addcontentsline{toc}{chapter}{\abstractname}%
+      \textit{Advisor II}: \@secondsupervisor
+    \end{singlespacing}
+  \end{center}
+  \vspace{-1em}
+  \begin{singlespacing}
 }
 
-\def\endabstracteng{\par\vfil\null\end{singlespacing}
-\selectlanguage{bahasa}}
+\def\endabstracteng{%
+  \par\vfil\null
+  \end{singlespacing}
+  \selectlanguage{bahasa}
+}
 
 %------------------------------------------------------------
 %Tabularization
