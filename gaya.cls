@@ -7,34 +7,32 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{gaya}
-\LoadClass[a4paper,12pt]{report}
+\LoadClass[11pt]{report} % Set base font size to 11pt
 \RequirePackage[english,bahasa]{babel}
 \RequirePackage{indentfirst}
 \RequirePackage{setspace}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{times}
+
+% Set B5 paper size (23cm x 15.5cm) and margins
+\RequirePackage[paperwidth=15.5cm, paperheight=23cm,
+               top=2cm, left=2.5cm, right=2cm, bottom=2cm]{geometry}
+
 \RequirePackage{graphicx,latexsym}
 \RequirePackage{pdflscape}
 \RequirePackage{longtable}
-\setlength{\paperwidth}{210mm}
-\setlength{\paperheight}{297mm}
-\usepackage[a4paper, left = 4cm, right = 3cm, top = 3cm, bottom = 3cm, footskip = 1cm]{geometry}
-\usepackage{verbatim,enumerate}
-\usepackage[hyphens]{url}
-\usepackage{fancyvrb}
+\RequirePackage{verbatim,enumerate}
+\RequirePackage[hyphens]{url}
+\RequirePackage{fancyvrb}
 \RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}%
 {fontsize=\footnotesize,
- %
- frame=lines,  % top and bottom rule only
- framesep=2em, % separation between frame and text
+ frame=lines,
+ framesep=2em,
  rulecolor=\color{Gray},
- %
  label=\fbox{\color{Black}data.txt},
  labelposition=topline,
- %
- commandchars=\|\(\), % escape character and argument delimiters for
-                      % commands within the verbatim
- commentchar=*        % comment character
+ commandchars=\|\(\),
+ commentchar=*
 }
 
 \usepackage{graphicx}
@@ -49,7 +47,14 @@
 \renewcommand{\tabularxcolumn}{m}
 \usepackage{blindtext}
 
-% for hypenation - pemenggalan kata
+% Font size settings
+\renewcommand\normalsize{\fontsize{11}{13.2}\selectfont}
+\setlength{\textwidth}{\paperwidth}
+\addtolength{\textwidth}{-5cm}
+\setlength{\textheight}{\paperheight}
+\addtolength{\textheight}{-5.5cm}
+
+% for hypenation
 \tolerance=1
 \emergencystretch=\maxdimen
 \hyphenpenalty=10000
@@ -61,8 +66,7 @@
 \newif\if@msthesis
 \newif\if@msproposal
 \DeclareOption{skripsi}{\@msthesistrue\@msproposalfalse}
-\DeclareOption{proposal}{\@
-msthesisfalse\@msproposaltrue}
+\DeclareOption{proposal}{\@msthesisfalse\@msproposaltrue}
 
 \newif\if@singlesp
 \newif\if@doublesp
@@ -85,28 +89,11 @@ msthesisfalse\@msproposaltrue}
 \usepackage[bibencoding=auto, backend=biber, style=ieee, language=english, doi=false, isbn=false]{biblatex}
 \DeclareLanguageMapping{english}{bahasa}
 \addbibresource{pustaka/pustaka.bib}
-%\RequirePackage{glossaries}%
-%\renewcommand{\nomname}{\nomenclaturename}%
-%\makeglossary%
-%\makenomenclature
 
 %------------------------------------------------------------
 %Layout
 %------------------------------------------------------------
-% \setlength{\topmargin}{-0.81cm}
-% % \setlength{\headheight}{12pt}
-% % \setlength{\headsep}{0cm}
-% % \setlength{\topskip}{1ex}
-% \setlength{\oddsidemargin}{1.49cm}
-% % \setlength{\evensidemargin}{1.cm}
-% \setlength{\textwidth}{14cm}
-% \setlength{\textheight}{23.7cm}
-% \setlength{\footskip}{1.5cm}
-% % \setlength{\marginparsep}{0pt}
-% % \setlength{\marginparwidth}{0pt}
-
-\setlength
-{\parindent}{0em} %Indent approx 6 character
+\setlength{\parindent}{0em}
 
 %-----------------------------------------------------------------
 
@@ -116,7 +103,7 @@ msthesisfalse\@msproposaltrue}
 \cftsetindents{subsection}{3em}{3em}
 \setlength{\cfttabindent}{1.5em}
 \setlength{\cftfigindent}{1.5em}
-\renewcommand{\cftchapdotsep}{\cftdotsep} % for add dots between chapter toc
+\renewcommand{\cftchapdotsep}{\cftdotsep}
 \renewcommand\cftfigpresnum{Gambar\  }
 \renewcommand\cfttabpresnum{Tabel\   }
 \usepackage{ragged2e}
@@ -129,7 +116,7 @@ msthesisfalse\@msproposaltrue}
 \setlist{nosep}
 
 %Tautan dan Daftar Isi
-\usepackage[hypertexnames=false]{hyperref} % make hyperref dumb, https://tex.stackexchange.com/questions/6098/wrong-hyper-references-after-resetting-chapter-counter
+\usepackage[hypertexnames=false]{hyperref}
 \newlength{\mylenf}
 \settowidth{\mylenf}{\cftfigpresnum}
 \setlength{\cftfignumwidth}{\dimexpr\mylenf+2em}
@@ -171,13 +158,6 @@ msthesisfalse\@msproposaltrue}
   \renewcommand\lstlistingname{Algoritma}
   \renewcommand\thelstlisting{\arabic{chapter}.\arabic{lstlisting}}}
 
-% \renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
-
-% Abstract-en
-\usepackage{icomma}
-\newcommand{\textbfit}[1]{\textbf{\textit{#1}}}
-
-
 %------------------------------------------------------------
 %Redefine chapter and sections
 %------------------------------------------------------------
@@ -186,18 +166,15 @@ msthesisfalse\@msproposaltrue}
 {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
 \titlespacing*{\paragraph}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-\setcounter{secnumdepth}{4} % how many sectioning levels to assign numbers to
-\setcounter{tocdepth}{4}    % how many sectioning levels to show in ToC
-\cftsetindents{subsubsection}{4.5em}{3.2em} % 
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\cftsetindents{subsubsection}{4.5em}{3.2em}
 
 \renewcommand \thepart {\@Roman\c@part}
 \renewcommand \thechapter {\@Roman\c@chapter}
-%\renewcommand \thesection {\@arabic\c@section.}
 \renewcommand \thesection {\@arabic\c@chapter.\@arabic\c@section}
-%\renewcommand\thesubsection {\@alph\c@subsection.}
 \renewcommand\thesubsection {\@arabic\c@chapter.\@arabic\c@section.\@arabic\c@subsection}
-%\renewcommand\thesubsubsection{\@roman\c@subsubsection.}
-%\renewcommand\thesubsubsection{}
+
 \renewcommand\appendix{\par
   \setcounter{chapter}{0}%
   \setcounter{section}{0}%
@@ -211,13 +188,11 @@ msthesisfalse\@msproposaltrue}
      {\ifnum \c@chapter>\z@ \@Alph\c@chapter.\fi \@arabic\c@equation}
   \renewcommand \thefigure
      {\ifnum \c@chapter>\z@ \@Alph\c@chapter.\fi \@arabic\c@figure}
+}
 
-
-     }
-
-\renewcommand{\chapter}{\clearpage\thispagestyle{plain}% ok wtf, it was (chapterheading) b4
-  \global\@topnum\z@ %Prevents figures from going at top of page
-  \@afterindenttrue %Indent the 1st paragraph
+\renewcommand{\chapter}{\clearpage\thispagestyle{plain}
+  \global\@topnum\z@
+  \@afterindenttrue
   \secdef\@chapter\@schapter}
 \renewcommand{\@makechapterhead}[1]{%
   {\parindent \z@ \centering \normalfont
@@ -234,9 +209,9 @@ msthesisfalse\@msproposaltrue}
   {\parindent \z@ \centering \normalfont
     \interlinepenalty\@M \large \bfseries #1\par\nobreak \vskip 20\p@ }}
 
-\renewcommand{\section}{\@startsection {section}{1}{\z@}%level
-                                   {-3.5ex \@plus -1ex \@minus -.2ex}%upperspace
-                                   {1.ex \@plus .2ex}%underspace
+\renewcommand{\section}{\@startsection {section}{1}{\z@}
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}
+                                   {1.ex \@plus .2ex}
                                    {\normalfont\normalsize\bfseries}}
 \renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
                                      {-3.25ex\@plus -1ex \@minus -.2ex}%
@@ -301,7 +276,7 @@ msthesisfalse\@msproposaltrue}
 \def\pagename{Page}%
 }
 
-%------------------------------------------------------------]
+%------------------------------------------------------------
 %Define thesis's inputs
 %------------------------------------------------------------
 \gdef\@university{Institut Teknologi Sumatera }
@@ -369,53 +344,59 @@ msthesisfalse\@msproposaltrue}
 %------------------------------------------------------------
 %Define sampul in Indonesian
 %------------------------------------------------------------
+\makeatletter
 \def\cover{
     \thispagestyle{empty}
     \setcounter{page}{1}
     \begin{center}
         \begin{singlespace}
-            \includegraphics[width=21mm]{gambar/itera-logo.png} \\[1.5cm]
             {\normalfont\bfseries
-                \fontsize{14pt}{16pt}\selectfont\MakeUppercase{\nobreak \@titleind}\\[1.5cm]
+                \fontsize{11}{16.8}\selectfont\MakeUppercase{\@titleind}\\[1.5cm]
                 \MakeUppercase{\@textta}\\[16pt]
                 \vfill
-                \fontsize{13pt}{16pt}\selectfont{\@fullname}\\
-                {\@idnum}\vfill
-                \fontsize{14pt}{16pt}\selectfont\MakeUppercase{
-                {Program Studi \@program}\\
-                {Fakultas \@dept}\\
-                {\@university}\\
-                {\@city}\\[0.5cm]
-                {\@yearsubmit}}}
+                {\fontfamily{ptm}\selectfont\fontsize{11}{13.2}\selectfont \@fullname\\ \@idnum}\\[0.5cm]
+                \includegraphics[width=3cm]{gambar/itera-logo.png} \\[1.5cm] \vfill
+                \fontsize{11}{16.8}\selectfont
+                \MakeUppercase{Program Studi \@program}\\
+                \MakeUppercase{Fakultas \@dept}\\
+                \MakeUppercase{\@university}\\
+                \MakeUppercase{\@yearsubmit}
+            }
         \end{singlespace}
     \end{center}
 }
+
 
 %------------------------------------------------------------
 %Define halaman judul in Indonesian
 %------------------------------------------------------------
 \def\coverdalam{
-	\addcontentsline{toc}{chapter}{HALAMAN JUDUL}
+    \addcontentsline{toc}{chapter}{HALAMAN JUDUL}
     \thispagestyle{empty}
     \setcounter{page}{1}
     \begin{center}
         \begin{singlespace}
-            \includegraphics[width=21mm]{gambar/itera-logo.png} \\[1.5cm]
             {\normalfont\bfseries
-                \fontsize{14pt}{16pt}\selectfont\MakeUppercase{\nobreak \@titleind} \\[1.5cm]
-                \MakeUppercase{\@textta}\\
-                \@textoncover\vfill
-                \fontsize{13pt}{16pt}\selectfont{\@fullname}\\
-                {\@idnum}\vfill
-                \fontsize{14pt}{16pt}\selectfont\MakeUppercase{
-                {Program Studi \@program}\\
-                {Fakultas \@dept}\\
-                {\@university}\\
-                {\@city}\\[0.5cm]
-                {\@yearsubmit}}}
+                \fontsize{11}{11}\selectfont\MakeUppercase{\nobreak \@titleind} \\[1.5cm]
+                \MakeUppercase{\@textta}\\[16pt]
+                \@textoncover
+                \vfill
+
+                {\fontfamily{ptm}\fontsize{11}{13.2}\selectfont
+                \@fullname\\
+                \@idnum}\\[0.5cm]
+                \includegraphics[width=3cm]{gambar/itera-logo.png} \\[1.5cm] \vfill
+
+                \fontsize{11}{11}\selectfont
+                \MakeUppercase{Program Studi \@program}\\
+                \MakeUppercase{Fakultas \@dept}\\
+                \MakeUppercase{\@university}\\
+                \MakeUppercase{\@yearsubmit}
+            }
         \end{singlespace}
     \end{center}
 }
+
 
 %------------------------------------------------------------
 %Approval Page
@@ -423,58 +404,62 @@ msthesisfalse\@msproposaltrue}
 \def\approvalpage{
     \thispagestyle{plain}
     \chapter*{\approvalname}
+    \vspace*{-1.3em}
     \begin{onehalfspace} \justifying
         \noindent \@textonapproval dengan judul "\textbf{\@titleindinline}" adalah benar dibuat oleh saya sendiri dan belum pernah dibuat dan diserahkan sebelumnya, baik sebagian ataupun seluruhnya, baik oleh saya ataupun orang lain, baik di \@university maupun di institusi pendidikan lainnya. 
     \end{onehalfspace}
+    
+    % --- Bagian Tanda Tangan Penulis ---
     \begin{singlespace} \RaggedRight
-        \@city, \@approvaldate\\[0.25cm]
-		\begin{minipage}{0.7\textwidth} % Adjust width as needed
-		    Penulis, \\[2cm]
-		    \bfseries \underline{\@fullname \textcolor{white}{,}} \\
-		    \bfseries NIM. \@idnum \\[1cm]
-		\end{minipage}
-		\hfill
-		\begin{minipage}{0.2\textwidth}
-		    \includegraphics[width=\textwidth]{gambar/sample-photo.jpg}
-		\end{minipage}
-	\begin{onehalfspace}
-		\\[0.5cm]
-	\end{onehalfspace}
-    \end{singlespace}
-	
-    \Centering Diperiksa dan disetujui oleh,\\[0.25cm]
-    \begin{singlespace}
-    \begin{tabular}{c c c}
-        Pembimbing I & & Pembimbing II \\[2cm]
-        \bfseries \underline{\@firstsupervisor} & \hspace{1cm} & \bfseries \underline{\@secondsupervisor} \\
-        \bfseries \@nipnrkfirst \@firstnip & & \bfseries \@nipnrksecond \@secondnip \\
-    \end{tabular} \\[0.5cm]
-    \end{singlespace}
-    \ifx \sempro\tahapan \else \fi
-    \begin{singlespace} \Centering
-        Disahkan oleh,\\[0.25cm]
-        Koordinator Program Studi \@program \\
-        Fakultas \@dept \\
-        \@university\\[2cm]
-        \bfseries \underline{\@headofdepartment} \\
-        \bfseries \@nipnrkhead \@headnip
+        \@city, \@approvaldate\\[0.3cm] % Spasi tanggal dikurangi
+        \begin{minipage}[t]{0.6\textwidth} 
+            Penulis, \\[1cm] 
+            \bfseries \underline{\@fullname} \\
+            \bfseries NIM. \@idnum
+        \end{minipage}%
+        \hfill
+        \begin{minipage}[t]{0.2\textwidth}
+            \centering
+            \vspace*{-1cm} 
+            \includegraphics[width=2cm, height=3cm]{gambar/sample-photo.jpg}
+        \end{minipage}
     \end{singlespace}
     
-    \vspace{0.5cm}
+    % --- Tanda Tangan Pembimbing ---
+    \begin{singlespace} \Centering
+        Diperiksa dan disetujui oleh,\\[0.1cm]
+        \begin{tabular}{@{}c@{\hspace{0.5cm}}c@{}}
+            Pembimbing I & Pembimbing II \\[1cm] 
+            \bfseries \underline{\@firstsupervisor} & \bfseries \underline{\@secondsupervisor} \\
+            \bfseries \@nipnrkfirst \@firstnip & \bfseries \@nipnrksecond \@secondnip
+        \end{tabular}
+    \end{singlespace}
+    
+    % --- Koordinator Prodi (Opsional) ---
+    \ifx \sempro\tahapan \else
+        \begin{singlespace} \Centering
+            Disahkan oleh,\\[0.1cm]
+            Koordinator Program Studi \@program \\
+            Fakultas \@dept \\
+            \@university\\[1.1cm]
+            \bfseries \underline{\@headofdepartment} \\
+            \bfseries \@nipnrkhead \@headnip
+        \end{singlespace}
+    \fi
+    
+    % --- Penguji ---
     \begin{singlespace}
         \begin{flushright}
-            Sidang Tugas Akhir :     
+            \vspace{-0.5cm} % Naikkan bagian penguji
+            Sidang Tugas Akhir: \\[0.1cm]
         \end{flushright}
-    \vspace{-0.5cm}
-    \raggedright
-    \begin{tabular}{l l}
-        Penguji I &: \@firstexaminer \\
-        Penguji II &: \@secondexaminer
-    \end{tabular}
+        \begin{tabular}{@{}l@{\hspace{0.2cm}}l@{}}
+            Penguji I & : \@firstexaminer \\
+            Penguji II & : \@secondexaminer
+        \end{tabular}
     \end{singlespace}
-
     
-\addcontentsline{toc}{chapter}{\approvalname}
+    \addcontentsline{toc}{chapter}{\approvalname}
 }
 
 %------------------------------------------------------------
@@ -483,27 +468,7 @@ msthesisfalse\@msproposaltrue}
 \def\acknowledgment{%
   \chapter*{\acknowledgmentname}%
   \addcontentsline{toc}{chapter}{\acknowledgmentname}
-% \null\vfill%Force the content of acknowledment to bottom page
 }
-
-%------------------------------------------------------------
-%Originality
-%------------------------------------------------------------
-%\def\originality{%
-%  \chapter*{\originalityname}%
-%  \addcontentsline{toc}{chapter}{\originalityname}
-%%\null\vfill%Force the content of originality to bottom page
-%}
-
-%------------------------------------------------------------
-%Publication
-%------------------------------------------------------------
-%\def\publication{%
-%	\addcontentsline{toc}{chapter}{\publicationnametoc}
-%	\chapter*{\publicationname}%
-%%\null\vfill%Force the content of originality to bottom page
-%}
-
 
 %------------------------------------------------------------
 %Motto
@@ -517,8 +482,8 @@ msthesisfalse\@msproposaltrue}
 %Preface
 %------------------------------------------------------------
 \def\preface{%
-	\chapter*{\prefacename}%
-	\addcontentsline{toc}{chapter}{\prefacename}
+    \chapter*{\prefacename}%
+    \addcontentsline{toc}{chapter}{\prefacename}
 }
 
 %------------------------------------------------------------
@@ -533,7 +498,7 @@ msthesisfalse\@msproposaltrue}
 \textbf{Skripsi ini adalah karya saya sendiri dan semua sumber baik yang dikutip
 maupun yang dirujuk telah saya nyatakan benar.}\\
   \end{center}
-\vspace{5cm} %need revison? but whatevr
+\vspace{5cm}
 
 \begin{tabular}{l c l}
 \textbf{Nama} & : & \textbf{\@fullname} \\
@@ -544,7 +509,6 @@ maupun yang dirujuk telah saya nyatakan benar.}\\
 
   \end{doublespace}
   \end{center}
-
 }
 
 %------------------------------------------------------------
@@ -552,6 +516,7 @@ maupun yang dirujuk telah saya nyatakan benar.}\\
 %------------------------------------------------------------
 \def\publicationpage{%
 \chapter*{\publicationname}%
+\vspace*{-1.5em}
 \addcontentsline{toc}{chapter}{\publicationnametoc}
 \begin{onehalfspacing}
 \begin{justify}
@@ -569,21 +534,24 @@ Jenis karya & : & Skripsi\\
 \end{justify}
 \textbf{\@titleind} \\
 \begin{justify}
+\vspace*{-1.7em}
 beserta perangkat yang ada (jika diperlukan). Dengan Hak Bebas Royalti Noneksklusif ini Institut Teknologi Sumatera berhak menyimpan, mengalihmedia/format-kan, mengelola dalam bentuk pangkalan data (\emph{database}), merawat, dan memublikasikan tugas akhir saya selama tetap mencantumkan nama saya sebagai penulis/pencipta dan sebagai pemilik Hak Cipta.\\[.3cm]
 \noindent Demikian pernyataan ini saya buat dengan sebenarnya.
 \end{justify}
+\end{onehalfspacing}
 
+\begin{onehalfspacing}
+\begin{center} % Tambahkan environment center
 \begin{tabular}{l c l}
 Dibuat di & : & \@city\\
 Pada tanggal & : & \@approvaldate\\
 & &\\
-\end{tabular}
-\\
+\end{tabular} \\
 Yang menyatakan\\
-\vspace{2cm}
+\vspace{0.4cm}
 \@fullname
+\end{center} % Tutup environment center
 \end{onehalfspacing}
-
 }
 
 %------------------------------------------------------------
@@ -592,9 +560,7 @@ Yang menyatakan\\
 \def\singkatan{%
   \chapter*{\nomenclaturename}%
   \thispagestyle{plain}
-  %\chapter*{\nomenclaturename}%
-  %\printglossary
-\addcontentsline{toc}{chapter}{\nomenclaturename}
+  \addcontentsline{toc}{chapter}{\nomenclaturename}
 }
 
 %------------------------------------------------------------
@@ -603,9 +569,7 @@ Yang menyatakan\\
 \def\simbol{%
   \chapter*{\symbolname}%
   \thispagestyle{plain}
-  %\chapter*{\nomenclaturename}%
-  %\printglossary
-\addcontentsline{toc}{chapter}{\symbolname}
+  \addcontentsline{toc}{chapter}{\symbolname}
 }
 
 %------------------------------------------------------------
@@ -613,52 +577,72 @@ Yang menyatakan\\
 %------------------------------------------------------------
 \selectlanguage{bahasa}
 \def\abstractind{%
-  \clearpage\thispagestyle{empty}%
+  \clearpage
+  \thispagestyle{empty}%
   \chapter*{\abstractname}%
-  {\parindent \z@ \normalfont % \centering
-  %{\large\textbf{\abstractname}} \\
-     }
-\textbf{\@titleind}  \\
-  \begin{singlespacing}%
-  \vskip 12\p@
-  \@fullname\ (\@idnum) \\
-  Pembimbing I: \@firstsupervisor \\
-  Pembimbing II:  \@secondsupervisor \\
-  \vskip 12\p@
-  \addcontentsline{toc}{chapter}{\abstractname}
+  \addcontentsline{toc}{chapter}{\abstractname}%
+
+  \begin{center}
+    \textbf{\@titleind}%
+  \end{center}
+  
+  \vspace{1em}
+
+  \begin{center}
+    \begin{singlespacing}
+      \@fullname\ (\@idnum)\\
+      Pembimbing I: \@firstsupervisor\\
+      Pembimbing II: \@secondsupervisor
+    \end{singlespacing}
+  \end{center}
+  \vspace{-1em}
+  \begin{singlespacing}
 }
-\def\endabstractind{\par\vfil\null\end{singlespacing}}
+
+\def\endabstractind{%
+  \par\vfil\null
+  \end{singlespacing}
+}
 
 %------------------------------------------------------------
-%Redefine Abstract in English
+% Redefine Abstract in English
 %------------------------------------------------------------
+\newcommand{\textbfit}[1]{\textbf{\textit{#1}}} % Bold-italic command
 
 \def\abstracteng{%
-  \clearpage\thispagestyle{empty}\selectlanguage{english}
+  \clearpage
+  \thispagestyle{empty}
+  \selectlanguage{english}
   \chapter*{\abstractname}%
-  {\parindent \z@ \normalfont %\centering
-  %{\large\textbf{\abstractname}} \\
-    }
-\textbfit{\@titleen}  \\
-  \begin{singlespacing}%
-  \vskip 12\p@
-  \@fullname\ (\@idnum) \\
-  \textit{Advisor} I : \@firstsupervisor \\
-  \textit{Advisor} II:  \@secondsupervisor \\
-  \vskip 12\p@
-  \addcontentsline{toc}{chapter}{\abstractname}
-}
-\def\endabstracteng{\par\vfil\null\end{singlespacing}
-\selectlanguage{bahasa}}
+  \addcontentsline{toc}{chapter}{\abstractname}%
 
-%------------------------------------------------------------
-%Redefine Kata pengantar
-%------------------------------------------------------------
+  \begin{center}
+    \textbfit{\@titleen}
+  \end{center}
+
+  \vspace{1em}
+
+  \begin{center}
+    \begin{singlespacing}
+      \@fullname\ (\@idnum) \\
+      \textit{Advisor I}: \@firstsupervisor \\
+      \textit{Advisor II}: \@secondsupervisor
+    \end{singlespacing}
+  \end{center}
+  \vspace{-1em}
+  \begin{singlespacing}
+}
+
+\def\endabstracteng{%
+  \par\vfil\null
+  \end{singlespacing}
+  \selectlanguage{bahasa}
+}
+
 %------------------------------------------------------------
 %Tabularization
 \newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
 \newcommand{\tab}[1]{\hspace{.2\textwidth}\rlap{#1}}
-
 
 \AtBeginDocument{%
 \if@doublesp%
