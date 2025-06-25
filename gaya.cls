@@ -18,6 +18,10 @@
 \RequirePackage[paperwidth=15.5cm, paperheight=23cm,
                top=2cm, left=2.5cm, right=2cm, bottom=2cm]{geometry}
 
+% Kompensasi kelebihan margin
+\addtolength{\textheight}{0.65cm}
+\addtolength{\voffset}{-0.2cm}    
+
 \RequirePackage{graphicx,latexsym}
 \RequirePackage{pdflscape}
 \RequirePackage{longtable}
@@ -49,10 +53,6 @@
 
 % Font size settings
 \renewcommand\normalsize{\fontsize{11}{13.2}\selectfont}
-\setlength{\textwidth}{\paperwidth}
-\addtolength{\textwidth}{-5cm}
-\setlength{\textheight}{\paperheight}
-\addtolength{\textheight}{-5.5cm}
 
 % for hypenation
 \tolerance=1
@@ -199,11 +199,11 @@
     \ifnum \c@secnumdepth >\m@ne
         \large\bfseries \@chapapp\space \thechapter
         \par\nobreak
-        \vskip 5\p@
+        \vskip 1\p@
     \fi
     \interlinepenalty\@M
     \large \bfseries #1\par\nobreak
-    \vskip 20\p@
+    \vskip 7\p@
     }}
 \renewcommand{\@makeschapterhead}[1]{%
   {\parindent \z@ \centering \normalfont
@@ -354,7 +354,7 @@
                 \fontsize{11}{16.8}\selectfont\MakeUppercase{\@titleind}\\[1.5cm]
                 \MakeUppercase{\@textta}\\[16pt]
                 \vfill
-                {\fontfamily{ptm}\selectfont\fontsize{11}{13.2}\selectfont \@fullname\\ \@idnum}\\[0.5cm]
+                {\fontfamily{ptm}\selectfont\fontsize{11}{13.2}\selectfont \MakeUppercase{\@fullname}\\ \@idnum}\\[0.5cm]
                 \includegraphics[width=3cm]{gambar/itera-logo.png} \\[1.5cm] \vfill
                 \fontsize{11}{16.8}\selectfont
                 \MakeUppercase{Program Studi \@program}\\
@@ -387,7 +387,7 @@
                 \@idnum}\\[0.5cm]
                 \includegraphics[width=3cm]{gambar/itera-logo.png} \\[1.5cm] \vfill
 
-                \fontsize{11}{11}\selectfont
+                \fontsize{11}{16.8}\selectfont
                 \MakeUppercase{Program Studi \@program}\\
                 \MakeUppercase{Fakultas \@dept}\\
                 \MakeUppercase{\@university}\\
@@ -404,16 +404,16 @@
 \def\approvalpage{
     \thispagestyle{plain}
     \chapter*{\approvalname}
-    \vspace*{-1.3em}
+    \vspace*{-1em}
     \begin{onehalfspace} \justifying
         \noindent \@textonapproval dengan judul "\textbf{\@titleindinline}" adalah benar dibuat oleh saya sendiri dan belum pernah dibuat dan diserahkan sebelumnya, baik sebagian ataupun seluruhnya, baik oleh saya ataupun orang lain, baik di \@university maupun di institusi pendidikan lainnya. 
     \end{onehalfspace}
-    
+
     % --- Bagian Tanda Tangan Penulis ---
     \begin{singlespace} \RaggedRight
         \@city, \@approvaldate\\[0.3cm] % Spasi tanggal dikurangi
         \begin{minipage}[t]{0.6\textwidth} 
-            Penulis, \\[1cm] 
+            Penulis, \\[1.5cm] 
             \bfseries \underline{\@fullname} \\
             \bfseries NIM. \@idnum
         \end{minipage}%
@@ -424,24 +424,26 @@
             \includegraphics[width=2cm, height=3cm]{gambar/sample-photo.jpg}
         \end{minipage}
     \end{singlespace}
-    
+  
+    \vspace{0.3cm}
     % --- Tanda Tangan Pembimbing ---
     \begin{singlespace} \Centering
         Diperiksa dan disetujui oleh,\\[0.1cm]
-        \begin{tabular}{@{}c@{\hspace{0.5cm}}c@{}}
-            Pembimbing I & Pembimbing II \\[1cm] 
+        \begin{tabular}{@{}c@{\hspace{1cm}}c@{}}
+            Pembimbing I & Pembimbing II \\[1.5cm] 
             \bfseries \underline{\@firstsupervisor} & \bfseries \underline{\@secondsupervisor} \\
             \bfseries \@nipnrkfirst \@firstnip & \bfseries \@nipnrksecond \@secondnip
         \end{tabular}
     \end{singlespace}
     
+    \vspace{0.3cm}
     % --- Koordinator Prodi (Opsional) ---
     \ifx \sempro\tahapan \else
         \begin{singlespace} \Centering
             Disahkan oleh,\\[0.1cm]
             Koordinator Program Studi \@program \\
             Fakultas \@dept \\
-            \@university\\[1.1cm]
+            \@university\\[1.5cm]
             \bfseries \underline{\@headofdepartment} \\
             \bfseries \@nipnrkhead \@headnip
         \end{singlespace}
@@ -450,10 +452,10 @@
     % --- Penguji ---
     \begin{singlespace}
         \begin{flushright}
-            \vspace{-0.5cm} % Naikkan bagian penguji
+            \vspace{-0.6cm} % Naikkan bagian penguji
             Sidang Tugas Akhir: \\[0.1cm]
         \end{flushright}
-        \begin{tabular}{@{}l@{\hspace{0.2cm}}l@{}}
+        \begin{tabular}{@{}l@{\hspace{0.1cm}}l@{}}
             Penguji I & : \@firstexaminer \\
             Penguji II & : \@secondexaminer
         \end{tabular}
@@ -527,15 +529,16 @@ Nama & : & \@fullname \\
 NIM & : & \@idnum \\
 Program Studi & : & \@program \\
 Fakultas & : & \@dept \\
-Jenis karya & : & Skripsi\\
+Jenis karya & : & Tugas Akhir\\
 \end{tabular}
 
 \noindent demi pengembangan ilmu pengetahuan, menyetujui untuk memberikan Hak Bebas Royalti Noneksklusif (\emph{Non-Exclusive Royalty Free Right}) kepada Institut Teknologi Sumatera atas karya ilmiah saya yang berjudul:
 \end{justify}
 \textbf{\@titleind} \\
 \begin{justify}
-\vspace*{-1.7em}
-beserta perangkat yang ada (jika diperlukan). Dengan Hak Bebas Royalti Noneksklusif ini Institut Teknologi Sumatera berhak menyimpan, mengalihmedia/format-kan, mengelola dalam bentuk pangkalan data (\emph{database}), merawat, dan memublikasikan tugas akhir saya selama tetap mencantumkan nama saya sebagai penulis/pencipta dan sebagai pemilik Hak Cipta.\\[.3cm]
+\vspace*{-1.5em}
+beserta perangkat yang ada (jika diperlukan). Dengan Hak Bebas Royalti Noneksklusif ini Institut Teknologi Sumatera berhak menyimpan, mengalihmedia/format-kan, mengelola dalam bentuk pangkalan data (\emph{database}), merawat, dan memublikasikan tugas akhir saya selama tetap mencantumkan nama saya sebagai penulis/pencipta dan sebagai pemilik Hak Cipta.\\[.1cm]
+\vspace*{-0.1em}
 \noindent Demikian pernyataan ini saya buat dengan sebenarnya.
 \end{justify}
 \end{onehalfspacing}
@@ -547,12 +550,14 @@ Dibuat di & : & \@city\\
 Pada tanggal & : & \@approvaldate\\
 & &\\
 \end{tabular} \\
+\vspace*{-0.5em}
 Yang menyatakan\\
-\vspace{0.4cm}
+\vspace{1.5cm}
 \@fullname
 \end{center} % Tutup environment center
 \end{onehalfspacing}
 }
+
 
 %------------------------------------------------------------
 %Daftar Singkatan
@@ -581,12 +586,13 @@ Yang menyatakan\\
   \thispagestyle{empty}%
   \chapter*{\abstractname}%
   \addcontentsline{toc}{chapter}{\abstractname}%
+  \vspace{-1.5em}
 
   \begin{center}
     \textbf{\@titleind}%
   \end{center}
   
-  \vspace{1em}
+  \vspace{-1em}
 
   \begin{center}
     \begin{singlespacing}
@@ -615,12 +621,13 @@ Yang menyatakan\\
   \selectlanguage{english}
   \chapter*{\abstractname}%
   \addcontentsline{toc}{chapter}{\abstractname}%
+  \vspace{-1.5em}
 
   \begin{center}
     \textbfit{\@titleen}
   \end{center}
 
-  \vspace{1em}
+  \vspace{-1em}
 
   \begin{center}
     \begin{singlespacing}
